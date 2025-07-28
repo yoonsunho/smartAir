@@ -15,9 +15,9 @@ public class MapDataController {
         this.mapDataService = mapDataService;
     }
 
-    @PostMapping
+    @PostMapping// 요청 바디 -> MapDataRequest DTO로 변환
     public ResponseEntity<String> receiveMapData(@RequestBody MapDataRequest request) {
-        mapDataService.saveMapData(request);
+        mapDataService.saveMapData(request); // service 호출
         return ResponseEntity.ok("Map data saved");
     }
 

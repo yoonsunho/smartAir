@@ -21,6 +21,14 @@ public class MapDataService {
         this.deviceRepository = deviceRepository;
     }
 
+    // 임베디드에서 받은 pgm, yaml 파일 저장
+    // + yaml 파일 파싱하여 메타 정보를 MapData 엔티티에 저장하는 메서드
+    @Transactional
+    public void handleMapFileUpload(){
+        
+    }
+
+
     @Transactional
     public void saveMapData(MapDataRequest request){
         // 1. orinId 값으로 device 앤티티 검색. 없으면 새 device 객체 만들어 저장
@@ -40,7 +48,7 @@ public class MapDataService {
     // 오린카의 가장 최신 지도 JSON 데이터를 조회하는 메서드
     public String getLatestMapArrayByDevice(String orinId){
         return mapDataRepository.findToByDeviceOrinIdOrderByMeasuredAtDesc(orinId)
-                .map(MapData::getMapArray) // MapData 객체에서 getMapArray() 메서드를 호출해 mapArray 꺼내기 
+                .map(MapData::getMapArray) // MapData 객체에서 getMapArray() 메서드를 호출해 mapArray 꺼내기
                 .orElse(null);
     }
 }
